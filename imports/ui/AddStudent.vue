@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <h3>Add Student</h3>
-    <p class="alert-success" id="add-alert"></p>
+    <div>
+      <p class="alert-success" id="add-alert"></p>
+    </div>
+
     <form action @submit="addStudent">
       <div class="row">
         <div class="col-6">
@@ -93,12 +96,12 @@ export default {
         phone: this.Student.phone,
         birthday: this.Student.birthdate,
       });
+      document.querySelector("#add-alert").textContent = "Student data added";
 
       this.Student.name = "";
       this.Student.email = "";
       this.Student.phone = "";
       this.Student.birthdate = "";
-      document.querySelector("#add-alert").textContent = "Student data added";
     },
   },
 
