@@ -1,7 +1,5 @@
 <template>
   <div class="container">
-    <p>{{ this.$route.params.id }}</p>
-
     <h3>Edit Data</h3>
 
     <div class="container">
@@ -11,6 +9,7 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Name</label>
               <input
+                required
                 type="text"
                 class="form-control"
                 placeholder="Enter Name"
@@ -22,6 +21,7 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Email</label>
               <input
+                required
                 type="email"
                 class="form-control"
                 placeholder="Email"
@@ -36,6 +36,7 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Phone</label>
               <input
+                required
                 type="text"
                 class="form-control"
                 placeholder="Phone Number"
@@ -46,12 +47,7 @@
           <div class="col-6">
             <div class="form-group">
               <label for="exampleInputEmail1">Date of Birth</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter birthdate"
-                v-model="birthdate"
-              />
+              <date-picker v-model="birthdate" :config="options"></date-picker>
             </div>
           </div>
         </div>
@@ -59,13 +55,17 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
+    <p class="update-alert alert-success"></p>
   </div>
 </template>
 
 <script>
 import { Students } from "../api/student";
+import datePicker from "vue-bootstrap-datetimepicker";
+import "pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css";
 export default {
   name: "edit",
+  components: { datePicker },
 
   data() {
     return {
@@ -74,7 +74,11 @@ export default {
       name: "",
       email: "",
       phone: "",
-      birthdate: "",
+      birthdate: new Date(),
+      options: {
+        format: "DD/MM/YYYY",
+        useCurrent: false,
+      },
     };
   },
 
@@ -95,6 +99,12 @@ export default {
           },
         }
       );
+      document.querySelector(".update-alert").textContent =
+        "Student Details Edited";
+      this.name = "";
+      this.email = "";
+      this.phone = "";
+      this.birthdate = "";
     },
   },
 

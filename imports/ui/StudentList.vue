@@ -43,6 +43,7 @@
 
 <script>
 import { Students } from "../api/student";
+
 export default {
   name: "StudentList",
   props: ["students"],
