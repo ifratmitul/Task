@@ -3,6 +3,7 @@ import Vue from "vue";
 import VueMeteorTracker from "vue-meteor-tracker";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+import router from "../imports/router/index";
 
 Vue.use(VueMeteorTracker);
 
@@ -14,10 +15,11 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
 import App from "../imports/ui/App.vue";
-
+Vue.config.productionTip = false;
 Meteor.startup(() => {
   new Vue({
     el: "#app",
+    router,
     ...App,
   });
 });
