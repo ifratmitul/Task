@@ -7,6 +7,7 @@
           <div class="col-6">
             <label for="exampleFormControlInput1">Write Subject Name</label>
             <input
+              required
               v-model="subjectName"
               type="text"
               class="form-control"
@@ -17,7 +18,7 @@
           <div class="col-6">
             <div class="form-group">
               <label for="exampleFormControlSelect1">Select Student</label>
-              <select class="form-control" v-model="studentName">
+              <select required class="form-control" v-model="studentName">
                 <option v-bind:key="s._id" v-for="s in students">
                   {{ s.name }}
                 </option>
